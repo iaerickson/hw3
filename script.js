@@ -2,25 +2,25 @@
 var generateBtn = document.querySelector("#generate");
 
 //Declaring string of useable set,
-//an empty array to put them in,
+//an array to put them in,
 //and boolean var if they should be included in generated password
 var lowerLetters = "abcdefghijklmnopqrstuvwxyz";
-var lowerLettersArr = [];
+var lowerLettersArr = lowerLetters.split("");
 var includeLowercase;
 
 //Uppercase Letters
 var upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var upperLettersArr = [];
+var upperLettersArr = upperLetters.split("");
 var includeUppercase;
 
 //Numbers
 var numbers = "1234567890";
-var numbersArr = [];
+var numbersArr = numbers.split("");
 var includeNumbers;
 
 //Characters
 var characters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-var charArr = [];
+var charArr = characters.split("");
 var includeChar;
 
 var passLength;
@@ -31,6 +31,7 @@ var passLength = prompt(
   "Please input an integer between 8 and 128 to determine the desired length of your generated password."
 );
 //Confirms what sets of characters to include in generated password
+//If confirmed, breaks string of available characters and puts them into an array
 var includeLowercase = confirm(
   "Do you want your password to include lowercase letters?"
 );
