@@ -57,6 +57,22 @@ function writePassword() {
   copyBtn.focus();
 }
 
+function generatePassword() {
+  var testPassword;
+  var useableChars;
+  if (includeLowercase && includeUppercase && includeNumbers && includeChar) {
+    //puts all useable characters into array
+    useableChars = lowerLettersArr
+      .concat(upperLettersArr)
+      .concat(numbersArr)
+      .concat(charArr);
+  }
+}
+
+//function is called to check if testPassword meets requirements
+//checks to make sure testPassword contains at least 1 char from all of the desired sets
+function passCheck() {}
+
 function copyToClipboard() {
   // BONUS
 }
