@@ -52,6 +52,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  document.getElementById("#password") = passwordText.value;
 
   copyBtn.removeAttribute("disabled");
   copyBtn.focus();
@@ -66,6 +67,36 @@ function generatePassword() {
       .concat(upperLettersArr)
       .concat(numbersArr)
       .concat(charArr);
+  } else if (includeLowercase && includeUppercase && includeNumbers) {
+    useableChars = lowerLettersArr.concat(upperLettersArr).concat(numbersArr);
+  } else if (includeLowercase && includeUppercase && includeChar) {
+    useableChars = lowerLettersArr.concat(upperLettersArr).concat(charArr);
+  } else if (includeLowercase && includeNumbers && includeChar) {
+    useableChars = lowerLettersArr.concat(numbersArr).concat(charArr);
+  } else if (includeUppercase && includeNumbers && includeChar) {
+    useableChars = upperLettersArr.concat(numbersArr).concat(charArr);
+  } else if (includeLowercase && includeUppercase) {
+    useableChars = lowerLettersArr.concat(upperLettersArr);
+  } else if (includeLowercase && includeNumbers) {
+    useableChars = lowerLettersArr.concat(numbersArr);
+  } else if (includeLowercase && includeChar) {
+    useableChars = lowerLettersArr.concat(charArr);
+  } else if (includeUppercase && includeNumbers) {
+    useableChars = upperLettersArr.concat(numbersArr);
+  } else if (includeUppercase && includeChar) {
+    useableChars = upperLettersArr.concat(charArr);
+  } else if (includeNumbers && includeChar) {
+    useableChars = numbersArr.concat(charArr);
+  } else if (includeLowercase) {
+    useableChars = lowerLettersArr;
+  } else if (includeUppercase) {
+    useableChars = upperLettersArr;
+  } else if (includeNumbers) {
+    useableChars = numbersArr;
+  } else if (includeChar) {
+    useableChars = charArr;
+  } else {
+    return "You suck";
   }
 }
 
