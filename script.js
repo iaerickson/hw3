@@ -23,39 +23,68 @@ var characters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 var charArr = characters.split("");
 var includeChar;
 
-var passLength;
-
 //Series of prompts to collect user's info for user's desired password.
 alert("Welcome to the Password Generator");
-var passLength = prompt(
-  "Please input an integer between 8 and 128 to determine the desired length of your generated password."
-);
+var passLengthCheck = false;
+while (passLengthCheck === false) {
+  var passLength = prompt(
+    "Please input an integer between 8 and 128 to determine the desired length of your generated password."
+  );
+  if (isNaN(passLength)) {
+    alert("This is not a number");
+  } else if (
+    !Number.isInteger(Number(passLength)) ||
+    passLength < 8 ||
+    passLength > 128
+  ) {
+    alert(
+      "Please choose an integer for a password length between 8 and 128 characters."
+    );
+  } else {
+    passLengthCheck = true;
+  }
+}
 //Confirms what sets of characters to include in generated password
 //If confirmed, breaks string of available characters and puts them into an array
-var includeLowercase = confirm(
-  "Do you want your password to include lowercase letters?"
-);
+var noCharSetSelected = false;
+while (!noCharSetSelected) {
+  var includeLowercase = confirm(
+    "Do you want your password to include lowercase letters?"
+  );
 
-var includeUppercase = confirm(
-  "Do you want your password to include uppercase letters?"
-);
+  var includeUppercase = confirm(
+    "Do you want your password to include uppercase letters?"
+  );
 
-var includeNumbers = confirm("Do you want your password to include numbers?");
+  var includeNumbers = confirm("Do you want your password to include numbers?");
 
-var includeChar = confirm(
-  "Do you want your password to include special characters?"
-);
+  var includeChar = confirm(
+    "Do you want your password to include special characters?"
+  );
+  if (
+    !includeLowercase &&
+    !includeUppercase &&
+    !includeNumbers &&
+    !includeChar
+  ) {
+    alert(
+      "Error! Cannot generate password. No character set selected. Please select which character sets you would like to use for your password."
+    );
+  } else {
+    noCharSetSelected = true;
+  }
+}
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  //var password = generatePassword();
+  var password = "Hello, World";
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  document.getElementById("#password") = passwordText.value;
 
-  copyBtn.removeAttribute("disabled");
-  copyBtn.focus();
+  //copyBtn.removeAttribute("disabled");
+  //copyBtn.focus();
 }
 
 function generatePassword() {
@@ -95,8 +124,6 @@ function generatePassword() {
     useableChars = numbersArr;
   } else if (includeChar) {
     useableChars = charArr;
-  } else {
-    return "You suck";
   }
 }
 
